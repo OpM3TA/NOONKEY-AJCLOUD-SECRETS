@@ -94,9 +94,6 @@ while Go:
     if result is not None:
         print(result)
 
-"""
-MOTO UNLOCK CODE: PXZNKUFTSEC6TDZOGGJ4
-"""
 
 """
 
@@ -136,3 +133,4 @@ print("\n=== Paths returning 200 OK ===")
 print(good_paths)
 
 """
+
