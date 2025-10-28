@@ -1,0 +1,396 @@
+Got 200 @  /etc/passwd !
+{{
+ HTTP/1.0 200 OK
+Server: jdbhttpd/0.1.0
+Connection: Keep-Alive
+Content-Type: text/plain
+Content-Length: 383
+
+root:x:0:0:root:/root:/bin/sh
+bin:x:1:1:bin:/bin:/bin/sh
+daemon:x:2:2:daemon:/usr/sbin:/bin/sh
+adm:x:3:4:adm:/adm:/bin/sh
+lp:x:4:7:lp:/var/spool/lpd:/bin/sh
+sync:x:5:0:sync:/bin:/bin/sync
+shutdown:x:6:11:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+uucp:x:10:14:uucp:/var/spool/uucp:/bin/sh
+operator:x:11:0:Operator:/var:/bin/sh
+nobody:x:99:99:nobody:/home:/bin/sh
+ 
+}}
+Got 200 @  /etc/shadow !
+{{
+ HTTP/1.0 200 OK
+Server: jdbhttpd/0.1.0
+Connection: Keep-Alive
+Content-Type: text/plain
+Content-Length: 38
+
+root:EeA5H4cQvy0gc:19220:0:99999:7:::
+ 
+}}
+Got 200 @  /etc/fstab !
+{{
+ HTTP/1.0 200 OK
+Server: jdbhttpd/0.1.0
+Connection: Keep-Alive
+Content-Type: text/plain
+Content-Length: 289
+
+# <file system>	<mount pt>	<type>	<options>	<dump>	<pass>
+proc		/proc		proc	defaults	0	0
+devpts		/dev/pts	devpts	defaults,gid=5,mode=620	0	0
+#tmpfs		/dev/shm	tmpfs	mode=0777	0	0
+tmpfs		/tmp		tmpfs	mode=1777	0	0
+tmpfs		/run		tmpfs	mode=0755,nosuid,nodev	0	0
+sysfs		/sys		sysfs	defaults	0	0
+ 
+}}
+Got 200 @  /etc/hosts !
+{{
+ HTTP/1.0 200 OK
+Server: jdbhttpd/0.1.0
+Connection: Keep-Alive
+Content-Type: text/plain
+Content-Length: 20
+
+127.0.0.1	localhost
+ 
+}}
+Got 200 @  /etc/inittab !
+{{
+ HTTP/1.0 200 OK
+Server: jdbhttpd/0.1.0
+Connection: Keep-Alive
+Content-Type: text/plain
+Content-Length: 970
+
+# /etc/inittab
+#
+# Copyright (C) 2001 Erik Andersen <andersen@codepoet.org>
+#
+# Note: BusyBox init doesn't support runlevels.  The runlevels field is
+# completely ignored by BusyBox init. If you want runlevels, use
+# sysvinit.
+#
+# Format for each entry: <id>:<runlevels>:<action>:<process>
+#
+# id        == tty to run on, or empty for /dev/console
+# runlevels == ignored
+# action    == one of sysinit, respawn, askfirst, wait, and once
+# process   == program to run
+
+# Startup the system
+::sysinit:/sbin/swapoff -a
+::sysinit:/bin/mount -t tmpfs tmpfs /dev
+::sysinit:/bin/mkdir -p /dev/pts
+::sysinit:/bin/mkdir -p /dev/shm
+::sysinit:/bin/mount -a
+::sysinit:/bin/hostname -F /etc/hostname
+
+# now run any rc scripts
+::sysinit:/etc/init.d/rcS
+
+# Put a getty on the serial port
+console::respawn:/sbin/getty -L console 115200 vt100 # GENERIC_SERIAL
+
+# Stuff to do for the 3-finger salute
+#::ctrlaltdel:/sbin/reboot
+
+# Stuff to do before rebooting
+::shutdown:/bin/umount -a -r
+ 
+}}
+Got 200 @  /etc/profile !
+{{
+ HTTP/1.0 200 OK
+Server: jdbhttpd/0.1.0
+Connection: Keep-Alive
+Content-Type: text/plain
+Content-Length: 357
+
+# Set PS1
+if [ "$PS1" ]; then
+	if [ "`id -u`" -eq 0 ]; then
+		export PS1='[\u@\h:\W]# '
+	else
+		export PS1='[\u@\h:\W]$ '
+	fi
+fi
+
+# Set terminal env
+export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/gm/bin:/mnt/mtd/bin
+export PATH=/system/bin:$PATH
+export LD_LIBRARY_PATH=/system/lib:/mnt/mtd/lib:/lib
+
+# Set directoty and file default create permission
+umask 022
+ 
+}}
+Got 200 @  /etc/resolv.conf !
+{{
+ HTTP/1.0 200 OK
+Server: jdbhttpd/0.1.0
+Connection: Keep-Alive
+Content-Type: text/plain
+Content-Length: 111
+
+search hsd1.in.comcast.net
+nameserver 75.75.75.75
+nameserver 75.75.76.76
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+ 
+}}
+Got 200 @  /proc/cpuinfo !
+{{
+ HTTP/1.0 200 OK
+Server: jdbhttpd/0.1.0
+Connection: Keep-Alive
+Content-Type: text/plain
+Content-Length: 0
+
+system type		: bull
+machine			: Unknown
+processor		: 0
+cpu model		: Ingenic Xburst V0.1  FPU V0.0
+BogoMIPS		: 858.52
+wait instruction	: yes
+microsecond timers	: no
+tlb_entries		: 32
+extra interrupt vector	: yes
+hardware watchpoint	: yes, count: 1, address/irw mask: [0x0fff]
+isa			: mips32r1
+ASEs implemented	:
+shadow register sets	: 1
+kscratch registers	: 7
+core			: 0
+VCED exceptions		: not available
+VCEI exceptions		: not available
+
+Hardware		: isvp
+Serial			: 00000000 00000000 00000000 00000000
+ 
+}}
+Got 200 @  /proc/filesystems !
+{{
+ HTTP/1.0 200 OK
+Server: jdbhttpd/0.1.0
+Connection: Keep-Alive
+Content-Type: text/plain
+Content-Length: 0
+
+nodev	sysfs
+nodev	rootfs
+nodev	bdev
+nodev	proc
+nodev	cgroup
+nodev	tmpfs
+nodev	debugfs
+nodev	sockfs
+nodev	pipefs
+nodev	anon_inodefs
+nodev	configfs
+nodev	devpts
+	squashfs
+nodev	ramfs
+	vfat
+nodev	jffs2
+nodev	mtd_inodefs
+	exfat
+ 
+}}
+Got 200 @  /proc/interrupts !
+{{
+ HTTP/1.0 200 OK
+Server: jdbhttpd/0.1.0
+Connection: Keep-Alive
+Content-Type: text/plain
+Content-Length: 0
+
+           CPU0       
+  9:          0   jz-intc  i2s_irq
+ 11:    4358972   jz-intc  jz-timerost
+ 14:     445149   jz-intc  ipu
+ 15:      89037   jz-intc  jz-sfc
+ 18:          0   jz-intc  pdma
+ 20:          0   jz-intc  GPIO F
+ 21:          0   jz-intc  GPIO E
+ 22:          0   jz-intc  GPIO D
+ 23:          0   jz-intc  GPIO C
+ 24:          1   jz-intc  GPIO B
+ 25:          0   jz-intc  GPIO A
+ 29:     229402   jz-intc  dwc2
+ 37:    1217932   jz-intc  isp
+ 44:          0   jz-intc  jzmmc_v1.2.1
+ 45:          0   jz-intc  jzmmc_v1.2.0
+ 58:      24615   jz-intc  uart1
+ 68:      16340   jz-intc  jz-i2c.0
+ 70:     445225   jz-intc  vpu0
+125:          0    GPIO B  gpioCtrl
+134:          1    GPIO B  mmc-insert-detect
+139:          0    GPIO C  home key
+251:          0    jz-adc  jz-aux
+252:          0    jz-adc  jz-aux
+253:          0    jz-adc  jz-aux
+254:          0    jz-adc  jz-aux
+255:          0    jz-adc  jz-aux
+256:          0    jz-adc  jz-aux
+257:          0    jz-adc  jz-aux
+258:          0    jz-adc  jz-aux
+ERR:          0
+ 
+}}
+Got 200 @  /proc/ioports !
+{{
+ HTTP/1.0 200 OK
+Server: jdbhttpd/0.1.0
+Connection: Keep-Alive
+Content-Type: text/plain
+Content-Length: 0
+
+ 
+}}
+Got 200 @  /proc/meminfo !
+{{
+ HTTP/1.0 200 OK
+Server: jdbhttpd/0.1.0
+Connection: Keep-Alive
+Content-Type: text/plain
+Content-Length: 0
+
+MemTotal:          98376 kB
+MemFree:           70080 kB
+Buffers:               8 kB
+Cached:             6844 kB
+SwapCached:            0 kB
+Active:            12144 kB
+Inactive:           5980 kB
+Active(anon):      11272 kB
+Inactive(anon):      144 kB
+Active(file):        872 kB
+Inactive(file):     5836 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:                 0 kB
+Writeback:             0 kB
+AnonPages:         11272 kB
+Mapped:             6664 kB
+Shmem:               144 kB
+Slab:               4416 kB
+SReclaimable:        788 kB
+SUnreclaim:         3628 kB
+KernelStack:         856 kB
+PageTables:          420 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:       49188 kB
+Committed_AS:     587684 kB
+VmallocTotal:    1048372 kB
+VmallocUsed:        2464 kB
+VmallocChunk:    1043268 kB
+ 
+}}
+Got 200 @  /proc/modules !
+{{
+ HTTP/1.0 200 OK
+Server: jdbhttpd/0.1.0
+Connection: Keep-Alive
+Content-Type: text/plain
+Content-Length: 0
+
+ptzCtrl 12566 2 - Live 0xc04f7000 (O)
+audio 71472 2 - Live 0xc04d8000 (O)
+sensor_gc1084 8651 1 - Live 0xc04b7000 (O)
+tx_isp 364049 4 - Live 0xc0447000 (O)
+mmc_block 24526 0 - Live 0xc03d0000
+jzmmc_v12 15525 0 - Live 0xc03bd000
+mmc_core 85134 2 mmc_block,jzmmc_v12, Live 0xc0399000
+atbm603x_bt_usb 1161936 0 - Live 0xc024a000 (O)
+gpioCtrl 11774 3 - Live 0xc00dd000 (O)
+exfat 102741 0 - Live 0xc00b6000 (O)
+ 
+}}
+Got 200 @  /proc/mounts !
+{{
+ HTTP/1.0 200 OK
+Server: jdbhttpd/0.1.0
+Connection: Keep-Alive
+Content-Type: text/plain
+Content-Length: 0
+
+rootfs / rootfs rw 0 0
+/dev/root / squashfs ro,relatime 0 0
+tmpfs /dev tmpfs rw,relatime 0 0
+proc /proc proc rw,relatime 0 0
+devpts /dev/pts devpts rw,relatime,gid=5,mode=620,ptmxmode=000 0 0
+tmpfs /tmp tmpfs rw,relatime 0 0
+tmpfs /run tmpfs rw,nosuid,nodev,relatime,mode=755 0 0
+sysfs /sys sysfs rw,relatime 0 0
+tmpfs /etc tmpfs rw,relatime,mode=755 0 0
+ramfs /var ramfs rw,relatime 0 0
+/dev/mtdblock4 /var/syscfg jffs2 rw,relatime 0 0
+/dev/mtdblock3 /mnt/mtd squashfs ro,relatime 0 0
+/dev/mtdblock3 /bin/load_driver.sh squashfs ro,relatime 0 0
+/dev/mtdblock3 /etc/sh_sd/auto_mmc.sh squashfs ro,relatime 0 0
+ 
+}}
+Got 200 @  /proc/stat !
+{{
+ HTTP/1.0 200 OK
+Server: jdbhttpd/0.1.0
+Connection: Keep-Alive
+Content-Type: text/plain
+Content-Length: 0
+
+cpu  151867 0 81707 1219400 36 0 2697 0 0 0
+cpu0 151867 0 81707 1219400 36 0 2697 0 0 0
+intr 6827180 0 0 0 0 0 0 0 0 0 0 0 4359127 0 0 445165 89171 0 0 0 0 0 0 0 0 1 0 0 0 0 229472 0 0 0 0 0 0 0 1217975 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 24687 0 0 0 0 0 0 0 0 0 16340 0 445241 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ctxt 18000067
+btime 1760563318
+processes 1418
+procs_running 1
+procs_blocked 0
+softirq 3497990 0 1484609 4 54926 0 0 226782 0 1 1731668
+ 
+}}
+Got 200 @  /proc/swaps !
+{{
+ HTTP/1.0 200 OK
+Server: jdbhttpd/0.1.0
+Connection: Keep-Alive
+Content-Type: text/plain
+Content-Length: 0
+
+Filename				Type		Size	Used	Priority
+ 
+}}
+Got 200 @  /proc/version !
+{{
+ HTTP/1.0 200 OK
+Server: jdbhttpd/0.1.0
+Connection: Keep-Alive
+Content-Type: text/plain
+Content-Length: 0
+
+Linux version 3.10.14 (root@ubuntu-server) (gcc version 4.7.2 (Ingenic r2.3.3 2016.12) ) #3 PREEMPT Wed Jan 4 00:24:52 CST 2023
+ 
+}}
+Got 200 @  /proc/self/net/arp !
+{{
+ HTTP/1.0 200 OK
+Server: jdbhttpd/0.1.0
+Connection: Keep-Alive
+Content-Type: text/plain
+Content-Length: 0
+
+IP address       HW type     Flags       HW address            Mask     Device
+10.0.0.22        0x1         0x2         40:5b:d8:61:53:e3     *        ra0
+10.0.0.1         0x1         0x2         c0:94:35:41:51:1e     *        ra0
+10.0.0.177       0x1         0x2         54:44:a3:4d:87:98     *        ra0
+ 
+}}
