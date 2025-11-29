@@ -41,5 +41,4 @@ url = "10.0.0.1"
 resp = fetch_it(url, output_file="fake.txt")
 print(resp)  # print first 1000 chars
 
-#
-#fetch_it("184.19.121.228", fuxit+"/etc/passwd")
+# well, that was a mistake
