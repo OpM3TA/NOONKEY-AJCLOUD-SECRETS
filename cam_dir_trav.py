@@ -48,6 +48,8 @@ Traversssssaaaahhh = """
 Not professional parser, just do shit right.
 = = = = = = = = End = = = = = = = =
 """
+# in console, just I just popped the path I was interersted in
+# at the time, say, /etc/shadow, and well thats it.
 print(Traversssssaaaahhh)
 Go = True
 while Go:
@@ -91,3 +93,4 @@ print("\n=== Paths returning 200 OK ===")
 print(good_paths)
 
 """
+
